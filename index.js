@@ -18,6 +18,6 @@ mongoose.connection.on('error', (err) => {
     console.error('MongoDB connection error: ' + err);
     process.exit(-1);
 });
-mongoose.connect('mongodb://localhost/coordinates-db', { useNewUrlParser: true, useUnifiedTopology: true })
+mongoose.connect('mongodb+srv://candidate:motorateste@cluster0-pmgte.gcp.mongodb.net/test?retryWrites=true&w=majority', { useNewUrlParser: true, useUnifiedTopology: true })
 mongoose.Promise = Promise
 app.listen(port, () => console.info(`Server is running on port ${port}!`));
