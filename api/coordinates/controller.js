@@ -9,8 +9,20 @@ const list = (req, res, next) => {
 const create = (req, res, next) => {
     const body = req.body;
     const formValid = body.lat && body.lng;
-    if(!formValid) return res.status(400).end();
-    res.status(501).end();
+    if(!formValid)
+        res.status(400).end();
+
+    const coordinates = new Coordinate({
+        lat: body.lat,
+        lng: body.lng
+    });
+    coordinates.save((err, coordinates) => {
+        if(err){
+            res.status(400).json(err).end();
+        }else{
+            res.status(200).json(coordinates).end();
+        }
+    });
 }
 
 module.exports = {
